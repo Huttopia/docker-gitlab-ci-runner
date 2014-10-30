@@ -33,10 +33,10 @@ if [ -f "${CA_CERTIFICATES_PATH}" ]; then
 fi
 
 appStart () {
-  wrapdocker
   echo "Starting gitlab-ci-runner..."
   sudo -u gitlab_ci_runner -H ln -sf ${DATA_DIR}/config.yml config.yml
   exec bundle exec ./bin/runner
+  wrapdocker
 }
 
 appSetup () {
