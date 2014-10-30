@@ -1,6 +1,8 @@
-FROM sameersbn/ubuntu:14.04.20140818
-MAINTAINER sameer@damagehead.com
+FROM jpetazzo/dind
+MAINTAINER informatique@huttopia.fr
 
+RUN apt-get update
+RUN apt-get install --yes software-properties-common python-software-properties
 RUN add-apt-repository -y ppa:git-core/ppa && \
     add-apt-repository -y ppa:brightbox/ruby-ng && \
     apt-get update && \
@@ -21,5 +23,4 @@ RUN chmod 755 /app/init
 
 VOLUME ["/home/gitlab_ci_runner/data"]
 
-ENTRYPOINT ["/app/init"]
-CMD ["app:start"]
+CMD ["wrapdocker && /app/init app:start"]
