@@ -1,4 +1,4 @@
-FROM jpetazzo/dind
+FROM ubuntu:14.04
 MAINTAINER informatique@huttopia.fr
 
 RUN apt-get update
@@ -14,6 +14,17 @@ RUN add-apt-repository -y ppa:git-core/ppa && \
     gem install --no-ri --no-rdoc bundler && \
     rm -rf /var/lib/apt/lists/* # 20140818
 
+# Installe les certificats LXC
+RUN apt-get update -qq
+RUN apt-get install -qqy iptables ca-certificates lxc
+
+# Installation de docker LXC
+RUN apt-get install -qqy apt-transport-https
+RUN echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+RUN apt-get update -qq
+RUN apt-get install -qqy lxc-docker
+
 # Droits sudo sans password pour gitlab_ci_runner
 RUN chmod 755 /etc/sudoers
 RUN echo "gitlab_ci_runner ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
@@ -26,6 +37,9 @@ ADD assets/init /app/init
 RUN chmod 755 /app/init
 
 VOLUME ["/home/gitlab_ci_runner/data"]
+
+# Chargement du docker du host pour lancer du docker dans ce docker
+VOLUME /var/lib/docker
 
 ENTRYPOINT ["/app/init"]
 CMD ["app:start"]
