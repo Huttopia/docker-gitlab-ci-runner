@@ -14,6 +14,10 @@ RUN add-apt-repository -y ppa:git-core/ppa && \
     gem install --no-ri --no-rdoc bundler && \
     rm -rf /var/lib/apt/lists/* # 20140818
 
+# Droits sudo sans password pour gitlab_ci_runner
+RUN chmod 755 /etc/sudoers
+RUN echo "gitlab_ci_runner ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
 ADD assets/setup/ /app/setup/
 RUN chmod 755 /app/setup/install
 RUN /app/setup/install
