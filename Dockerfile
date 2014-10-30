@@ -28,4 +28,4 @@ RUN chmod 755 /app/init
 VOLUME ["/home/gitlab_ci_runner/data"]
 
 ENTRYPOINT ["/app/init"]
-CMD wrapdocker && app:start
+CMD ["app:start"]
