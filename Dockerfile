@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER informatique@huttopia.fr
+MAINTAINER Cédric Vanet (cedvan) <cvanet@norsys.fr>
 
 RUN apt-get update
 RUN apt-get install --yes software-properties-common python-software-properties
