@@ -25,6 +25,9 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D78692
 RUN apt-get update -qq
 RUN apt-get install -qqy lxc-docker
 
+# Installation curl
+RUN apt-get install curl
+
 # Droits sudo sans password pour gitlab_ci_runner
 RUN chmod 755 /etc/sudoers
 RUN echo "gitlab_ci_runner ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
