@@ -1,12 +1,12 @@
 FROM ubuntu:14.04
 MAINTAINER Cédric Vanet (cedvan) <cvanet@norsys.fr>
 
-RUN apt-get update
-RUN apt-get install --yes software-properties-common python-software-properties
+RUN apt-get update -qq
+RUN apt-get install -qqy software-properties-common python-software-properties
 RUN add-apt-repository -y ppa:git-core/ppa && \
     add-apt-repository -y ppa:brightbox/ruby-ng && \
-    apt-get update && \
-    apt-get install -y build-essential checkinstall \
+    apt-get update -qq && \
+    apt-get install -qqy build-essential checkinstall \
       git-core zlib1g-dev libyaml-dev libssl-dev \
       libgdbm-dev libreadline-dev libncurses5-dev libffi-dev \
       libxml2-dev libxslt-dev libcurl4-openssl-dev libicu-dev \
