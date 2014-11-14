@@ -1,6 +1,8 @@
 FROM ubuntu:14.04
 MAINTAINER Cédric Vanet (cedvan) <cvanet@norsys.fr>
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get update -qq
 RUN apt-get install -qqy software-properties-common python-software-properties
 RUN add-apt-repository -y ppa:git-core/ppa && \
