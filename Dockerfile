@@ -14,9 +14,6 @@ RUN add-apt-repository -y ppa:git-core/ppa && \
     gem install --no-ri --no-rdoc bundler && \
     rm -rf /var/lib/apt/lists/* # 20140818
 
-# Installation de curl
-RUN apt-get install -qqy curl
-
 # Installe les certificats LXC
 RUN apt-get update -qq
 RUN apt-get install -qqy iptables ca-certificates lxc
@@ -27,6 +24,9 @@ RUN echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
 RUN apt-get update -qq
 RUN apt-get install -qqy lxc-docker
+
+# Installation de curl
+RUN apt-get install -qqy curl
 
 # Droits sudo sans password pour gitlab_ci_runner
 RUN chmod 755 /etc/sudoers
