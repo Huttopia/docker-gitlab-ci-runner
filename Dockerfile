@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER Cédric Vanet (cedvan) <cvanet@norsys.fr>
+MAINTAINER Huttopia <dev@huttopia.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
