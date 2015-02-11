@@ -30,6 +30,12 @@ RUN apt-get install -qqy lxc-docker
 # Installation de curl
 RUN apt-get install -qqy curl
 
+# Fig
+RUN curl -L https://github.com/docker/fig/releases/download/1.0.1/fig-`uname -s`-`uname -m` > /usr/local/bin/fig; chmod +x /usr/local/bin/fig
+
+# Java
+RUN apt-get update -qq && apt-get install -qqy default-jre
+
 # Droits sudo sans password pour gitlab_ci_runner
 RUN chmod 755 /etc/sudoers
 RUN echo "gitlab_ci_runner ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
